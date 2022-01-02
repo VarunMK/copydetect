@@ -6,6 +6,7 @@ reference files (files that might have been plagairised from).
 from pathlib import Path
 import time
 import numpy as np
+import pandas as pd
 import logging
 from utils import (filter_code, highlight_overlap, get_copied_slices,
                     get_document_fingerprints, find_fingerprint_overlap)
@@ -546,6 +547,14 @@ class CopyDetector:
         plt.close()
 
         scores = self.similarity_matrix[self.similarity_matrix != -1]
+        #Converting to csv
+        sim_arr=np.asarray(code_list)
+        sim_df=pd.DataFrame(sim_arr)[[0,1,2,3]]
+        sim_df[1]=pd.to_numeric(sim_df[1])
+        sim_df[0]=pd.to_numeric(sim_df[0])
+        sim_df=sim_df[(sim_df[0]>self.display_t) | (sim_df[1]>self.display_t)]
+        sim_df.columns=['Similarity of 1','Similarity of 2','File_Name 1','File_Name 2']
+        sim_df.to_csv('report.csv')
         plt.hist(scores, bins=20)
         plt.tight_layout()
         sim_hist_buffer = io.BytesIO()
