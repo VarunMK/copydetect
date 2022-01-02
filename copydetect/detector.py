@@ -7,7 +7,7 @@ from pathlib import Path
 import time
 import numpy as np
 import logging
-from .utils import (filter_code, highlight_overlap, get_copied_slices,
+from utils import (filter_code, highlight_overlap, get_copied_slices,
                     get_document_fingerprints, find_fingerprint_overlap)
 import matplotlib.pyplot as plt
 import webbrowser
@@ -257,6 +257,8 @@ class CopyDetector:
         self.test_dirs = config["test_directories"]
         if "reference_directories" in config:
             self.ref_dirs = config["reference_directories"]
+        else:
+            self.ref_dirs=config["test_directories"]
         if "extensions" in config:
             self.extensions = config["extensions"]
         if "boilerplate_directories" in config:

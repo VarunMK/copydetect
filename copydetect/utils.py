@@ -14,7 +14,7 @@ from markupsafe import escape
 try:
     from .winnow import _winnow
 except (ModuleNotFoundError, ImportError):
-    from .pywinnow import _winnow
+    from pywinnow import _winnow
 
 def filter_code(code, filename, language=None):
     """Tokenize and filter a code document. Replace variable names with

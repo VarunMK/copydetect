@@ -9,3 +9,6 @@ copydetect.egg-info/
 docs/_build
 
 .cache
+report.html
+MiniFactorial/
+config.json

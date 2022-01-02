@@ -1,5 +1,5 @@
-from .detector import CopyDetector
-from . import __version__
+from detector import CopyDetector
+from __init__ import __version__
 import numpy as np
 import os
 import sys
@@ -83,7 +83,7 @@ def main():
             args.ref_dirs = args.test_dirs
         config = {
           "test_directories" : args.test_dirs,
-          "reference_directories" : args.ref_dirs,
+          "reference_directories" : args.test_dirs,
           "boilerplate_directories" : args.boilerplate_dirs,
           "extensions" : args.extensions,
           "noise_threshold" : args.noise_thresh,
